@@ -14,7 +14,7 @@ class MobTank:
         self.recent_move_tick=self.time()
         self.init_anim_tick=self.time()
         self.speed=speed #速度等級
-        self.damage=20 #碰到主角的傷害
+        self.damage=30 #碰到主角的傷害
         #建立雙屬性
         self.element_1=Element(self.x+7, 550)
         self.element_2=Element(self.x+37, 550)
@@ -36,7 +36,7 @@ class MobTank:
             animation=1
         #向前移動距離
         if self.time()-self.recent_move_tick>=50:
-            self.move+=1.5+0.3*self.speed #速度公式
+            self.move+=1.5+0.2*self.speed #速度公式
             self.recent_move_tick=self.time()
         character_img = self.get_img(animation)
         scaled_img = pygame.transform.scale(character_img, (int(self.width * self.scale), int(self.height * self.scale)))
@@ -69,7 +69,7 @@ class MobAlien:
         self.recent_move_tick=self.time()
         self.init_anim_tick=self.time()
         self.speed=speed
-        self.damage=35 #碰到主角的傷害
+        self.damage=50 #碰到主角的傷害
         self.element=Element(self.x+15, 550)#建立屬性
 
     def get_img(self, index):
@@ -86,7 +86,7 @@ class MobAlien:
             animation=1
         #向前移動距離
         if self.time()-self.recent_move_tick>=50:
-            self.move+=2.5+0.3*self.speed #速度公式
+            self.move+=2.5+0.2*self.speed #速度公式
             self.recent_move_tick=self.time()
         character_img = self.get_img(animation)
         scaled_img = pygame.transform.scale(character_img, (int(self.width * self.scale), int(self.height * self.scale)))
@@ -114,7 +114,7 @@ class MobSpider:
         self.recent_move_tick=self.time()
         self.init_anim_tick=self.time()
         self.speed=speed
-        self.damage=30 #碰到主角的傷害
+        self.damage=40 #碰到主角的傷害
         self.element=Element(self.x+5, 550)#建立屬性
 
     def get_img(self, index):
@@ -131,7 +131,7 @@ class MobSpider:
             animation=1
         #向前移動距離
         if self.time()-self.recent_move_tick>=50:
-            self.move+=3+0.5*self.speed #速度公式
+            self.move+=3+0.4*self.speed #速度公式
             self.recent_move_tick=self.time()
         character_img = self.get_img(animation)
         scaled_img = pygame.transform.scale(character_img, (int(self.width * self.scale), int(self.height * self.scale)))
@@ -150,7 +150,7 @@ class MobSpider:
 class Boss:
     def __init__(self, speed):
         self.files = ['Boss.png', 'Boss_1.png']
-        self.width = 165
+        self.width = 100
         self.height = 315
         self.y=470
         self.x=1150
@@ -162,7 +162,7 @@ class Boss:
         self.damage=9999 #碰到主角的傷害
         #建立多個屬性
         self.element=[]
-        for i in range(12):
+        for i in range(8):
             self.element.append(Element(self.x, 430))
         
     def get_img(self, index):
@@ -183,7 +183,7 @@ class Boss:
             self.y=471
         #向前移動距離
         if self.time()-self.recent_move_tick>=50:
-            self.move+=1+0.2*self.speed #速度公式
+            self.move+=0.8+0.2*self.speed #速度公式
             self.recent_move_tick=self.time()
         character_img = self.get_img(animation)
         scaled_img = pygame.transform.scale(character_img, (int(self.width * self.scale), int(self.height * self.scale)))
@@ -191,7 +191,7 @@ class Boss:
         count=12-len(self.element)
         #移動多個屬性標示
         for i in self.element:
-            i.update(game_window, self.move+120-30*count)
+            i.update(game_window, self.move+170-30*count)
             count+=1
             
     #被攻擊
@@ -242,7 +242,7 @@ class Element:
 #怪物管理
 class MobManager:
     def __init__(self, game_window):
-        self.moblist=[]
+        self.moblist = []
         self.game_window=game_window
     #招喚怪物
     def spawn(self, level):

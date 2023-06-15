@@ -14,7 +14,9 @@ class Character:
 
     def update(self, game_window, index, start_x, start_y, scale):
         character_img = self.get_img(index)
-        scaled_img = pygame.transform.scale(character_img, (int(self.width * scale), int(self.height * scale)))
+        scaled_img = pygame.transform.scale(character_img,
+        (int(self.width * scale),
+        int(self.height * scale)))
         game_window.blit(scaled_img, (start_x, start_y))
 class Hand:
     def __init__(self):
@@ -23,14 +25,17 @@ class Hand:
         self.height = [8, 13]
     def get_img(self, index):
         img = pygame.image.load(self.files[index]).convert_alpha()
-        image = pygame.Surface((self.width[index], self.height[index]), pygame.SRCALPHA)  # Create a surface with an alpha channel
+        image = pygame.Surface((self.width[index], self.height[index]), 
+        pygame.SRCALPHA)  # Create a surface with an alpha channel
         image.blit(img, (0, 0), (0, 0, self.width[index], self.height[index]))
         return image
     def update(self, game_window, index, start_x, start_y, scale):
         if index == 1:
             start_y -= 10
         hand_img = self.get_img(index)
-        scaled_img = pygame.transform.scale(hand_img, (int(self.width[index] * scale), int(self.height[index] * scale)))
+        scaled_img = pygame.transform.scale(hand_img,
+         (int(self.width[index] * scale), 
+        int(self.height[index] * scale)))
         game_window.blit(scaled_img, (start_x, start_y))
 class Gun:
     def __init__(self):
@@ -44,8 +49,11 @@ class Gun:
         self.bullet_image = pygame.image.load(self.bullet[index]).convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
-        self.scaled_image = pygame.transform.scale(self.image, (int(self.width * scale), int(self.height * scale)))
-        self.scaled_bullet = pygame.transform.scale(self.bullet_image, (int(self.bullet_image.get_width()), int(self.bullet_image.get_height())))
+        self.scaled_image = pygame.transform.scale(self.image,
+        (int(self.width * scale), int(self.height * scale)))
+        self.scaled_bullet = pygame.transform.scale(self.bullet_image,
+         (int(self.bullet_image.get_width()),
+         int(self.bullet_image.get_height())))
     
     def update(self, game_window, index, start_x, start_y):
         if index == 1:
